@@ -1,0 +1,37 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+    <p><%= f.label :first_name %><br />
+  <%= f.text_field :first_name, :validate => true%></p>
+  <%#= devise_error_message 'first_name' %>
+
+    <p><%= f.label :last_name %><br />
+  <%= f.text_field :last_name %></p>
+    <%=resource.errors[:last_name][0] if resource.errors[:last_name].present?%>
+    
+  <p><%= f.label :email %><br />
+  <%= f.email_field :email %></p>
+  <%=resource.errors[:email][0] if resource.errors[:email].present?%>
+    <% if resource.errors[:email].present? %>
+    <ul>
+      <% resource.errors[:email].each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <p><%= f.label :profile %><br />
+  <%= f.file_field :avatar %></p>
+
+  <p><%= f.label :password %><br />
+  <%= f.password_field :password %></p>
+
+  <p><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></p>
+
+  <p><%= f.submit "Sign up" %></p>
+<% end %>
+
+<%= render :partial => "devise/shared/links" %>

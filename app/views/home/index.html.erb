@@ -1,0 +1,46 @@
+<h1>Hello!</h1>
+<%#=current_user[0]%>
+<% unless user_signed_in? -%>
+  <p><%= link_to 'Sign up as User', new_user_registration_path %></p>
+  <p><%= link_to 'Sign in as User', new_user_session_path %></p>
+<% end -%>
+<%if user_signed_in? %>
+<%=current_user.first_name%>
+<%#= image_tag current_user.avatar.url %>
+<%#= image_tag @user.avatar.url(:medium) %>
+<%= image_tag current_user.avatar.url(:thumb) %>
+<%=link_to 'Logout', '/users/sign_out' %>
+<%end%>
+
+
+<p>Hello World!</p>
+
+
+<%
+str = "aaabbbcccddddffffhhhzzzzzyyyyy"
+arrstr = str.split(//)
+h =Hash.new
+arrstr.uniq.each do |arrelement|
+    h[arrelement] = 0
+end
+
+arrstr.each do |arrele|
+ h[arrele] = h[arrele] + 1  
+end
+
+
+
+h.each do |key , value|
+        if (value ==  h.values.max )%>
+                <%= key%>
+		
+        <%end
+end
+
+%>
+<%#=h.max%>
+<%#=h.values.max%>
+<%#=h.keys.max%>
+
+
+<%#=h%>
